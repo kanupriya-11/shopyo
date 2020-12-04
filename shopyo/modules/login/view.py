@@ -10,8 +10,6 @@ from flask import url_for
 from flask_login import login_required
 from flask_login import login_user
 from flask_login import logout_user
-
-from shopyoapi.enhance import base_context
 from shopyoapi.html import notify_danger
 
 from modules.admin.models import User
@@ -33,7 +31,7 @@ login_blueprint = Blueprint(
 
 @login_blueprint.route("/", methods=["GET", "POST"])
 def login():
-    context = base_context()
+    context = {}
     login_form = LoginForm()
     context["form"] = login_form
     if login_form.validate_on_submit():

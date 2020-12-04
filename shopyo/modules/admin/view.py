@@ -5,8 +5,7 @@
 """
 import json
 import os
-
-# from config import Config
+from config import Config
 from flask import Blueprint
 from flask import redirect
 from flask import render_template
@@ -15,8 +14,6 @@ from flask import url_for
 
 from flask_login import login_required
 from sqlalchemy import exists
-
-from shopyoapi.enhance import base_context
 from shopyoapi.init import db
 
 from modules.admin.admin import admin_required
@@ -47,7 +44,7 @@ def user_list():
      Lists all users in the database.
 
     """
-    context = base_context()
+    context = {}
     context["users"] = User.query.all()
     return render_template("admin/index.html", **context)
 
@@ -62,7 +59,7 @@ def user_add():
     adds a user to database.
 
     """
-    context = base_context()
+    context = {}
     if request.method == "POST":
         username = request.form["name"]
         password = request.form["password"]
@@ -119,7 +116,7 @@ def admin_edit(id):
     :type id: int
 
     """
-    context = base_context()
+    context = {}
     user = User.query.get(id)
     context["user"] = user
     context["user_roles"] = [r.name for r in user.roles]
@@ -164,7 +161,7 @@ def admin_update():
 @login_required
 @admin_required
 def roles():
-    context = base_context()
+    context = {}
     context["roles"] = Role.query.all()
     return render_template("admin/roles.html", **context)
 
