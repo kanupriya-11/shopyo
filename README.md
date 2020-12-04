@@ -8,16 +8,23 @@
 
 Featured on [Weekly Python issue 436](https://newsletry.com/Home/Python%20Weekly/9a578693-14ba-47c5-8a8e-08d7b0139fe7) 🌟
 
-🎁 Open inventory management  and Point of sales (powered by python) for small shops. 
+🎁 Open inventory management  and Point of sales (powered by python) for small shops. Slowly becoming the hybrid between a CMS and an ERP
 
-- :sparkler: Plug and Play modules
-- :sparkler: Themes!
-
-It also makes a great Flask base and supports commands such as:
+- ⚡ Spin websites quickly
+- 🔥 Plug and Play modules (Just copy paste folder)
+- 🖍️ Themes!
+- 📒 Administrative management
+- ⚽ Public-facing (landing page, contact page, etc) management
+- 🍓 Intuitive: is also a great Flask base and supports Django commands commands such as:
 
 `python manage.py startapp loans` 
 
-# Test it out!
+## 💬 Community: Discord¶
+
+Join the [Shopyo Discord](https://discord.gg/k37Ef6w/)
+
+
+# 🍜 Test it out!
 
 | Info | Value |
 |---|---|
@@ -59,6 +66,22 @@ default login
   password: pass
 ```
 
+# 📚 Docs
+
+👉 [Link](https://abdur-rahmaanj.github.io/shopyo/)
+
+* Setting up Shopyo
+* Education section
+* Contributing to Shopyo
+* Modules/Apps
+* Templates
+* Models
+* Views
+* Commandline
+* Shopyoapi
+* Docs
+* Unittests
+
 # ⚗️ Stability
 
 **beta** - now in beta!
@@ -88,32 +111,19 @@ Shop:
 - Page
 - Contact
 
+More:
+ - www
+
 If you want to use the project as a Flask base, just remove 
 the shop modules in modules/
 
-## The engine
+# ⚙️ The engine
 
 Shopyo's engine which provides a Django-like structure and awesome mechanisms has been abstracted into [hadbox](https://www.github.com/hadbox/hadbox)
 
-## 💬 Community: Discord¶
 
-Join the Discord community [Discord Group](https://discord.gg/k37Ef6w/)
 
-# Docs
 
-Link: [abdur-rahmaanj.github.io/shopyo/](https://abdur-rahmaanj.github.io/shopyo/)
-
-* Setting up Shopyo
-* Education section
-* Contributing to Shopyo
-* Modules/Apps
-* Templates
-* Models
-* Views
-* Commandline
-* Shopyoapi
-* Docs
-* Unittests
 
 # 📜 Testimonial
 
