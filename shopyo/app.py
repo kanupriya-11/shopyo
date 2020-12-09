@@ -15,6 +15,8 @@ from flask_uploads import configure_uploads
 
 from config import app_config
 
+import jinja2
+
 from shopyoapi.enhance import get_setting
 from shopyoapi.init import categoryphotos
 from shopyoapi.init import db
@@ -23,6 +25,8 @@ from shopyoapi.init import ma
 from shopyoapi.init import migrate
 from shopyoapi.init import productphotos
 from shopyoapi.init import subcategoryphotos
+from modules.category.models import Category
+from modules.product.models import Product
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -47,6 +51,16 @@ def create_app(config_name):
         mod = importlib.import_module("modules.{}.view".format(module))
         app.register_blueprint(getattr(mod, "{}_blueprint".format(module)))
 
+    with app.app_context():
+        theme_dir = os.path.join(app.config["BASE_DIR"], "themes")
+        my_loader = jinja2.ChoiceLoader(
+            [
+                app.jinja_loader,
+                jinja2.FileSystemLoader([theme_dir]),
+            ]
+        )
+        app.jinja_loader = my_loader
+
     @app.context_processor
     def inject_global_vars():
         theme_dir = os.path.join(
@@ -68,6 +82,12 @@ def create_app(config_name):
         )
         CONTACT_URL = url_for("contact.index")
 
+        def get_categories():
+            return Category.query.all()
+
+        def get_products():
+            return Product.query.all()
+
         base_context = {
             "APP_NAME": APP_NAME,
             "SECTION_NAME": SECTION_NAME,
@@ -76,12 +96,23 @@ def create_app(config_name):
             "ACTIVE_THEME_VERSION": ACTIVE_THEME_VERSION,
             "ACTIVE_THEME_STYLES_URL": ACTIVE_THEME_STYLES_URL,
             "CONTACT_URL": CONTACT_URL,
+            "len": len,
+            "get_categories": get_categories,
+            "get_products": get_products,
         }
 
         return base_context
 
     # end of func
     return app
+
+    # if app.config["DEBUG"]:
+    # @app.after_request
+    # def after_request(response):
+    # response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, public, max-age=0"
+    # response.headers["Expires"] = 0
+    # response.headers["Pragma"] = "no-cache"
+    # return response
 
 
 app = create_app("development")
