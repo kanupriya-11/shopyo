@@ -14,7 +14,7 @@ transaction_helpers = db.Table(
 
 class Product(db.Model):
     __tablename__ = "product"
-    
+
     barcode = db.Column(db.String(100), primary_key=True)
     price = db.Column(db.Float)
     name = db.Column(db.String(100))
@@ -26,9 +26,7 @@ class Product(db.Model):
 
     is_onsale = db.Column(db.Boolean, default=False)
     is_featured = db.Column(db.Boolean, default=False)
-    subcategory_name = db.Column(
-        db.String(100), db.ForeignKey("subcategories.name")
-    )
+    subcategory_name = db.Column(db.String(100), db.ForeignKey("subcategories.name"))
     transactions = db.relationship(
         "Transaction",
         secondary=transaction_helpers,

@@ -10,6 +10,7 @@ from wtforms.fields.html5 import IntegerField
 from wtforms.fields import SelectField
 from wtforms import TextAreaField
 
+
 class DeliveryOptionForm(FlaskForm):
     option = StringField(
         "Option",
@@ -29,8 +30,11 @@ class PaymentOptionForm(FlaskForm):
         [DataRequired()],
         render_kw={"class": "form-control", "autocomplete": "off"},
     )
-    text =  TextAreaField('Text', [DataRequired()], render_kw={"rows": 10,
-        "class": "form-control", "autocomplete": "off"})
+    text = TextAreaField(
+        "Text",
+        [DataRequired()],
+        render_kw={"rows": 10, "class": "form-control", "autocomplete": "off"},
+    )
 
 
 class CouponForm(FlaskForm):
@@ -39,11 +43,12 @@ class CouponForm(FlaskForm):
         [DataRequired()],
         render_kw={"class": "form-control", "autocomplete": "off"},
     )
-    type = SelectField('Type', choices = [
-        ('percentage', 'percentage'), 
-        ('value', 'value')], 
+    type = SelectField(
+        "Type",
+        choices=[("percentage", "percentage"), ("value", "value")],
         validators=[DataRequired()],
-        render_kw={"class": "form-control"})
+        render_kw={"class": "form-control"},
+    )
     value = IntegerField(
         "Value",
         [DataRequired()],
